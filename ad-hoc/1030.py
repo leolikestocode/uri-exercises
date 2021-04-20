@@ -1,10 +1,18 @@
-times = int(input())
+from collections import deque
 
-for i in range(0, times):
-    items = int(input())
-    split_items = items.split(' ')
 
-    item1 = split_items[0]
-    item2 = split_items[i]
+def removeInIndex(people, jump):
+    de = deque(people)
+    while len(de) > 1:
+        de.rotate(-jump)
+        de.pop()
+    return(de.pop())
 
-    print(item1, item2)
+
+n = int(input())
+for i in range(n):
+    people, jump = input().split()
+    people = [x for x in range(1, int(people)+1)]
+    jump = int(jump)
+    result = removeInIndex(people, jump)
+    print('Case %d: %d' % (i+1, result))
